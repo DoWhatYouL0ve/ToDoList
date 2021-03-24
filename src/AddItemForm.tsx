@@ -1,4 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
+import {IconButton, TextField} from "@material-ui/core";
+import {ControlPoint} from "@material-ui/icons";
 
 type AddItemFormPropsType = {
     addItem: (title: string) => void
@@ -30,12 +32,13 @@ export function AddItemForm(props: AddItemFormPropsType) {
 
     return (
         <div>
-            <input value={newTaskTitle}
+            <TextField value={newTaskTitle}
                    onChange={onNewTitleChangeHandler}
                    onKeyPress={onKeyPressHandler}
-                   className={error ? 'error' : ''}/>
-            <button onClick={addTaskButton}>+</button>
-            {error && <div className={'error-message'}>Field is required</div>}
+                       // convert not a boolean into boolean by using !!error...
+                // also works the same with !![], !!{}, !!'' ect
+                   error={!!error} variant="outlined" label={'Type here'} helperText={error}/>
+            <IconButton onClick={addTaskButton} color={'primary'}><ControlPoint /></IconButton>
         </div>
     )
 }
