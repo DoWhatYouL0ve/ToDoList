@@ -9,13 +9,13 @@ import Container from '@material-ui/core/Container'
 
 export type FiltersValueType = 'all' | 'active' | 'completed';
 
-type ToDoListtype = {
+export type ToDoListType = {
     id: string
     title: string
     filter: FiltersValueType
 }
 
-type TaskStateType = {
+export type TaskStateType = {
     [key: string]: Array<TaskType>
 }
 
@@ -73,7 +73,7 @@ function App() {
     let toDoList1 = v1()
     let toDoList2 = v1()
 
-    let [toDoLists, setToDoLists] = useState<Array<ToDoListtype>>([
+    let [toDoLists, setToDoLists] = useState<Array<ToDoListType>>([
         {id: toDoList1, title: 'What to learn', filter: 'all'},
         {id: toDoList2, title: 'What to buy', filter: 'all'}
     ])
@@ -111,7 +111,7 @@ function App() {
     })
 
     function addToDoList(title: string) {
-        let toDoList: ToDoListtype = {
+        let toDoList: ToDoListType = {
             id: v1(),
             title: title,
             filter: "all"
