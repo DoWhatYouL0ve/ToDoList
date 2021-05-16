@@ -19,10 +19,10 @@ type PropsType = {
     changeFilter: (value: FiltersValueType, todolistId: string) => void
     addTask: (title: string, todolistId: string) => void
     changeTaskStatus: (todolistId: string, taskId: string, isDone: boolean) => void
-    changeTaskTitle: (taskId: string, newTitle: string, todolistId: string) => void
+    changeTaskTitle: (todolistId: string, taskId: string, newTitle: string) => void
     filter: FiltersValueType
     deleteToDoList: (todolistId: string) => void
-    changeToDoListTitle: (todolistId: string, newTitle: string) => void
+    changeToDoListTitle: (newTitle: string, todolistId: string) => void
 }
 
 export function ToDoList(props: PropsType) {
@@ -34,7 +34,7 @@ export function ToDoList(props: PropsType) {
         props.deleteToDoList(props.id)
     }
     const changeToDoListTitle = (newTitle: string) => {
-        props.changeToDoListTitle(props.id, newTitle)
+        props.changeToDoListTitle(newTitle, props.id)
     }
 
     const addTask = (title: string) => {
@@ -59,7 +59,7 @@ export function ToDoList(props: PropsType) {
                             props.changeTaskStatus( props.id, t.id,  e.currentTarget.checked)
                         }
                         const onChangeTitleHandler = (newValue: string) => {
-                            props.changeTaskTitle(t.id, newValue, props.id)
+                            props.changeTaskTitle(props.id, t.id, newValue)
                         }
 
                         return <div key={t.id} className={t.isDone ? 'is-done' : ''}>

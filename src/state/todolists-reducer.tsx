@@ -36,20 +36,14 @@ export const addTodolistAC = (title: string): AddTodolistActionType => {
 }
 
 export const changeTodolistTitleAC = (title:string, id: string): ChangeTodolistTitleActionType => {
-    return {type: "CHANGE-TODOLIST-TITLE", id: id, title: title}
+    return {type: "CHANGE-TODOLIST-TITLE", title: title, id: id}
 }
 
 export const changeTodolistFilterAC = (filter:FiltersValueType, id: string): ChangeTodolistFilterActionType => {
     return {type: "CHANGE-TODOLIST-FILTER", id: id, filter: filter}
 }
 
-export let toDoList1 = v1()
-export let toDoList2 = v1()
-
-const initialState: Array<ToDoListType> = [
-    {id: toDoList1, title: 'What to learn', filter: 'all'},
-    {id: toDoList2, title: 'What to buy', filter: 'all'}
-]
+const initialState: Array<ToDoListType> = []
 
 // и инструкцию (action, тоже объект)
 // согласно прописаному type в этом action (инструкции) я поменяю state
@@ -66,6 +60,7 @@ export const todolistsReducer = (state: Array<ToDoListType> = initialState, acti
             }, ...state]
         }
         case 'CHANGE-TODOLIST-TITLE': {
+            debugger
             const todolist = state.find(tl => tl.id === action.id)
             if (todolist) {
                 todolist.title = action.title
