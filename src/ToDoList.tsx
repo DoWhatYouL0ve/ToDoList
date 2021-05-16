@@ -18,7 +18,7 @@ type PropsType = {
     removeTask: (id: string, todolistId: string) => void
     changeFilter: (value: FiltersValueType, todolistId: string) => void
     addTask: (title: string, todolistId: string) => void
-    changeTaskStatus: (taskId: string, isDone: boolean, todolistId: string) => void
+    changeTaskStatus: (todolistId: string, taskId: string, isDone: boolean) => void
     changeTaskTitle: (taskId: string, newTitle: string, todolistId: string) => void
     filter: FiltersValueType
     deleteToDoList: (todolistId: string) => void
@@ -56,7 +56,7 @@ export function ToDoList(props: PropsType) {
                         //так как каждая li имеет свою кнопку удаления, то не выносим эту функцию за рамки создания li
                         const onRemoveHandler = () => props.removeTask(t.id, props.id);
                         const onChangeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
-                            props.changeTaskStatus(t.id, e.currentTarget.checked, props.id)
+                            props.changeTaskStatus( props.id, t.id,  e.currentTarget.checked)
                         }
                         const onChangeTitleHandler = (newValue: string) => {
                             props.changeTaskTitle(t.id, newValue, props.id)
